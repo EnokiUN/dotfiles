@@ -1,0 +1,140 @@
+set $mod Mod4
+set $alt Mod1
+font pango:CaskaydiaCove Nerd Font 10
+
+exec --no-startup-id dex --autostart --environment i3
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id nm-applet
+
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+floating_modifier $mod
+
+# Applications
+bindsym $mod+w kill
+
+bindsym $mod+Return exec i3-sensible-terminal
+
+bindsym $alt+q exec qutebrowser
+bindsym Print exec "ksnip -r"
+bindsym $alt+Print exec ksnip
+
+bindsym $mod+r exec "rofi modi=drun,run -show drun"
+bindsym $mod+Tab exec "rofi modi=window -show window"
+
+bindsym $alt+space exec "~/switchkeymap.sh"
+
+# Focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Move
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Split
+bindsym $mod+b split h
+bindsym $mod+v split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Layout
+bindsym $mod+4 layout stacking
+bindsym $mod+5 layout tabbed
+bindsym $mod+6 layout toggle split
+
+# Floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+s focus child
+
+bindsym $mod+e mode "move_floating" focus floating
+
+mode "move_floating" {
+	bindsym h move left
+	bindsym j move down
+	bindsym k move up
+	bindsym l move down
+	
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+# Workspaces
+# Use nerd font emojis
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3ﮠ"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+
+bindsym $mod+Escape workspace back_and_forth
+
+# Exit & Reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+q reload
+bindsym $mod+Shift+x exec "~/shutdown_confirmation.sh"
+
+mode "resize" {
+        bindsym l resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym j resize shrink height 10 px or 10 ppt
+        bindsym h resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+d mode "resize"
+
+# Gaps :trol:
+gaps inner 4
+gaps outer 0
+smart_gaps on
+smart_borders on
+
+# Colours
+set $main #0c0912
+set $secondary #e566ff 
+set $complimentary #fc35bc
+set $extra #120e1c
+set $text #ffffff
+
+client.focused $secondary $secondary $main
+client.unfocused $main $main $text
+client.focused_inactive $extra $extra $text
+client.urgent $complimentary $complimentary $secondary
+
+# Bar
+bar {
+    position top
+    strip_workspace_numbers yes
+    separator_symbol |
+    status_command i3status --config .config/i3/i3status.conf
+
+    colors {
+        background $main
+        statusline $text
+        separator $complimentary
+        focused_workspace $extra $secondary $main
+        active_workspace $secondary $extra $text
+        inactive_workspace $extra $main $text
+        urgent_workspace $compliment $complimentary $secondary
+    }
+}
