@@ -121,20 +121,15 @@ if has("autocmd")
 		au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
 		au FileType python set tabstop=4 softtabstop=4 shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
 		au FileType rust set smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-		" inoremap { {}<ESC>i
-		" inoremap [ []<ESC>i
-		" inoremap ( ()<ESC>i
-		" inoremap ' ''<ESC>i
-		" inoremap " ""<ESC>i
+		au FileType godot set tabstop=4 softtabstop=4 shiftwidth=4 expandtab foldmethod=expr
 	augroup END
 endif
 
 " PLUGINS
 call plug#begin()
-	Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
 	Plug 'rust-lang/rust.vim'
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'jmckiern/vim-shoot', {'do': '\"./install.py\" geckodriver' }
+	Plug 'jmckiern/vim-shoot', {'do': '\"./install.py\" -U geckodriver' }
 	Plug 'github/copilot.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
@@ -147,6 +142,8 @@ call plug#begin()
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
+	Plug 'tpope/vim-dispatch'
+	Plug 'habamax/vim-godot'
 call plug#end()
 
 let g:airline_powerline_fonts = 1
@@ -159,22 +156,3 @@ let g:airline#extensions#coc#success_symbol = ' '
 let g:airline#extensions#coc#current_symbol = ' '
 let g:airline#extensions#coc#show_coc_status = 1
 
-function PythonConfig()
-	hi semshiGlobal			ctermfg=blue		guifg=#0000ff
-	nnoremap <F5> :w<ENTER>:!python %<ENTER>
-	inoremap <F5> <ESC>:w<ENTER>:!python %<ENTER>
-	vnoremap <F5> <ESC>:w<ENTER>:! !python<ENTER>
-endfunction
-
-function RustConfig()
-	nnoremap <F4> :RustFmt<ENTER>:w<ENTER>:RustTest!<ENTER><CR>
-	inoremap <F4> <ESC>:RustFmt<ENTER>:w<ENTER>:RustTest!<ENTER><CR>
-	vnoremap <F4> <ESC>:RustFmt<ENTER>:w<ENTER>:RustTest!<ENTER><CR>
-	nnoremap <F5> :RustFmt<ENTER>:w<ENTER>:!cargo run<ENTER>
-	inoremap <F5> <ESC>:RustFmt<ENTER>:w<ENTER>:!cargo run<ENTER>
-	vnoremap <F5> <ESC>:RustFmt<ENTER>:w<ENTER>:!cargo run<ENTER>
-	" inoremap { {<ENTER>}<ESC>ko
-endfunction
-
-autocmd FileType python call PythonConfig()
-autocmd FileType rust call RustConfig()
