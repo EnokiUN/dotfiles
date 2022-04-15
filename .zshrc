@@ -22,7 +22,7 @@ function proj () {
   cd ~/projects/$1
 }
 
-export EDITOR='mvim'
+export EDITOR='nvim'
 export PATH="$HOME/.local/bin:$PATH"
 
 ### ALIASES ###
@@ -33,6 +33,7 @@ alias :wq='exit'
 autoload -Uz tetriscurses
 alias tetris="tetriscurses"
 alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
+alias mpv='mpv --opengl-es=yes'
 echo
 
 if [ "$(command -v exa)" ]; then
