@@ -32,7 +32,7 @@ alias py='python3'
 alias :wq='exit'
 autoload -Uz tetriscurses
 alias tetris="tetriscurses"
-alias notes='cd ~/Notes && nvim . && git add . && git commit -m "notes" && git push && cd -'
+alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
 echo
 
 if [ "$(command -v exa)" ]; then
