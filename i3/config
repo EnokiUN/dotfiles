@@ -21,11 +21,14 @@ bindsym $mod+w kill
 bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $alt+q exec qutebrowser
+bindsym $alt+w exec revolt-desktop
+bindsym $alt+g exec "godot --video-driver GLES2"
+
 bindsym Print exec "ksnip -r"
 bindsym $alt+Print exec ksnip
 
-bindsym $mod+r exec "rofi modi=drun,run -show drun"
-bindsym $mod+Tab exec "rofi modi=window -show window"
+bindsym $mod+r exec "rofi -modi run,drun -show drun"
+bindsym $mod+Tab exec "rofi -modi window -show window"
 
 bindsym $alt+space exec "~/switchkeymap.sh"
 
