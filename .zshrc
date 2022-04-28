@@ -34,7 +34,6 @@ autoload -Uz tetriscurses
 alias tetris="tetriscurses"
 alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
 alias mpv='mpv --opengl-es=yes'
-echo
 
 if [ "$(command -v exa)" ]; then
 	unalias -m ll
@@ -56,4 +55,7 @@ if [ "$(command -v bat)" ]; then
 	alias cat='bat --color=always'
 fi
 
+set -o vi
+
+echo
 neofetch

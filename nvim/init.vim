@@ -125,6 +125,18 @@ if has("autocmd")
 	augroup END
 endif
 
+let g:airline_powerline_fonts = 1
+let g:airline_solarized_bg='dark'
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#coc#error_symbol = ' '
+let g:airline#extensions#coc#warning_symbol = ' '
+let g:airline#extensions#coc#info_symbol = ' '
+let g:airline#extensions#coc#success_symbol = ' '
+let g:airline#extensions#coc#current_symbol = ' '
+let g:airline#extensions#coc#show_coc_status = 1
+
 " PLUGINS
 call plug#begin()
 	Plug 'rust-lang/rust.vim'
@@ -145,14 +157,4 @@ call plug#begin()
 	Plug 'tpope/vim-dispatch'
 	Plug 'habamax/vim-godot'
 call plug#end()
-
-let g:airline_powerline_fonts = 1
-let g:airline_solarized_bg='dark'
-let g:airline#extensions#coc#enabled = 1
-let g:airline#extensions#coc#error_symbol = ' '
-let g:airline#extensions#coc#warning_symbol = ' '
-let g:airline#extensions#coc#info_symbol = ' '
-let g:airline#extensions#coc#success_symbol = ' '
-let g:airline#extensions#coc#current_symbol = ' '
-let g:airline#extensions#coc#show_coc_status = 1
 

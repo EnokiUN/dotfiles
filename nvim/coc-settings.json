@@ -1,6 +1,5 @@
 {
-	"coc.preferences.formatOnSaveFiletypes": ["rust"],
-	"rust.full_docs": true,
+	"coc.preferences.formatOnSaveFiletypes": ["rust", "python", "gdscript"],
 	"languageserver": {
 		"godot": {
 			"host": "127.0.0.1",
