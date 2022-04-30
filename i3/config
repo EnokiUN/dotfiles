@@ -5,7 +5,7 @@ font pango:CaskaydiaCove Nerd Font 10
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
-exec --no-startup-id nitrogen restore
+exec --no-startup-id nitrogen --restore
 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -23,6 +23,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $alt+q exec qutebrowser
 bindsym $alt+w exec revolt-desktop
 bindsym $alt+g exec "godot --video-driver GLES2"
+bindsym $alt+e exec emacs
 
 bindsym Print exec "ksnip -r"
 bindsym $alt+Print exec ksnip
