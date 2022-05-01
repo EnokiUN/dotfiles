@@ -25,3 +25,110 @@
 
 ; Now you understand why you should spend a net average of about 3 years of your life configuring
 ; emacs and some ways to go about it.
+
+; Appearance & Misc
+
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(setq display-line-numbers-type 'relative)
+(setq inhibit-startup-message t)
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message nil)
+(setq display-time-24hr-format t)
+
+(prettify-symbols-mode t)
+
+; Packages
+
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+(package-initialize)
+
+(defun pack (package &rest called)
+  "Install a package if it's not already installed."
+  (unless (package-installed-p package)
+    (when (y-or-n-p (format "Package %s is missing. Install it? " package))
+      (package-install package)))
+  (when (package-installed-p package)
+    (if called
+      (progn
+        (require package)
+        (apply called)))))
+
+;; Evil Mode
+
+(pack 'evil 'evil-mode)
+
+;; Gruvbox Theme
+
+(defun load-gruvbox-theme ()
+  (interactive)
+  (load-theme 'gruvbox-dark-hard t))
+
+(pack 'gruvbox-theme 'load-gruvbox-theme)
+
+;; Dired
+
+(defun load-all-the-icons-mode ()
+  (interactive)
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
+  (setq all-the-icons-dired-monochrome nil))
+
+(pack 'all-the-icons-dired 'load-all-the-icons-mode)
+
+(defun laod-diredfl-mode ()
+  (interactive)
+  (add-hook 'dired-mode-hook 'diredfl-mode))
+
+(pack 'diredfl 'laod-diredfl-mode)
+
+(defun load-dired-git-mode ()
+  (interactive)
+  (add-hook 'dired-after-readin-hook 'dired-git-info-auto-enable))
+
+(pack 'dired-git-info 'load-dired-git-mode)
+
+(pack 'fd-dired)
+(pack 'ranger)
+
+;; LSP
+
+(defun load-lsp-mode ()
+  (interactive)
+  (add-hook 'prog-mode-hook 'lsp))
+
+(defun load-lsp-ui-mode ()
+  (interactive)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode))
+
+(pack 'lsp-mode 'load-lsp-mode)
+(pack 'lsp-ui 'load-lsp-ui-mode)
+(pack 'company)
+(pack 'flycheck)
+
+;; Rust
+
+(defun load-rust-mode ()
+  (interactive)
+  (setq rust-format-on-save t)
+  (setq indent-tabs-mode nil)
+  (add-hook 'rust-mode-hook 'lsp))
+
+(pack 'rust-mode 'load-rust-mode)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(ranger fd-dired projectile pfuture hydra ht gruvbox-theme evil diredfl dired-git-info cfrs all-the-icons-dired ace-window)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
