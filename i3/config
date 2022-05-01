@@ -6,6 +6,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id emacs --daemon
 
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
@@ -23,7 +24,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $alt+q exec qutebrowser
 bindsym $alt+w exec revolt-desktop
 bindsym $alt+g exec "godot --video-driver GLES2"
-bindsym $alt+e exec emacs
+bindsym $alt+e exec "emacsclient -c -a 'emacs'"
 
 bindsym Print exec "ksnip -r"
 bindsym $alt+Print exec ksnip
@@ -31,7 +32,7 @@ bindsym $alt+Print exec ksnip
 bindsym $mod+r exec "rofi -modi run,drun -show drun"
 bindsym $mod+Tab exec "rofi -modi window -show window"
 
-bindsym $alt+space exec "~/switchkeymap.sh"
+bindsym $alt+space exec ~/switchkeymap.sh
 
 # Focus
 bindsym $mod+h focus left
