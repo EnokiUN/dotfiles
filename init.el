@@ -26,6 +26,9 @@
 ; Now you understand why you should spend a net average of about 3 years of your life configuring
 ; emacs and some ways to go about it.
 
+; You could also just use Doom Emacs which is great but invalidates my whole rant so let's act like
+; it isn't a thing.
+
 ; Appearance & Misc
 
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
