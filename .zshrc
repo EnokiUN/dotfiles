@@ -34,6 +34,7 @@ autoload -Uz tetriscurses
 alias tetris="tetriscurses"
 alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
 alias mpv='mpv --opengl-es=yes'
+alias '$'='' # Olivier, behold 0.001% of my power.
 
 if [ "$(command -v exa)" ]; then
 	unalias -m ll
