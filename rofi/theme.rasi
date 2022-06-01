@@ -1,0 +1,91 @@
+/*	VARIABLES	*/
+
+* {
+	/*	COLOURS		*/
+
+	main: 			#0c0912;
+	secondary: 		#e566ff;
+	text: 			#ffffff;
+
+	/*	BORDERS		*/
+
+	border-width:		2px;
+	border-radius:		9px;
+}
+
+/*	THEME		*/
+window {
+	background-color: 	@main;
+	text-color:		@text;
+	border:			@border-width;
+	border-color:		@secondary;
+	border-radius:		@border-radius;
+	width:			70%;
+}
+
+prompt {
+	enabled:		true;
+	padding:		1%;
+	background-color:	@main;
+	text-color:		@text;
+}
+
+entry {
+	padding:		1%;
+	background-color:	@main;
+	text-color:		@text;
+	placeholder:		"Search:";
+	placeholder-color:	@secondary;
+	blink:			true;
+}
+
+inputbar {
+	children:			[ prompt, entry ];
+	background-color:		@main;
+	text-color:			@text;
+	border-radius:			@border-radius;
+	border-color:			@secondary;
+}
+
+listview {
+	background-color:	@main;
+	padding:		5px;
+	columns:		1;
+	lines:			15;
+	spacing:		1%;
+	cycle:			true;
+	dynamic:		true;
+	layout:			vertical;
+}
+
+mainbox {
+	children:		[ inputbar, listview ];
+	background-color:	@main;
+	border-radius:		7px;
+	border-color:		@secondary;
+	spacing:		0.5%;
+	padding:		0.5%;
+}
+
+element {
+	background-color:	@main;
+	text-color:		@text;
+	orientation:		vertical;
+	padding:		0.5%;
+	border-radius:		0%;
+}
+
+element-text {
+	background-color:	inherit;
+	text-color:		inherit;
+	expand:			true;
+}
+
+element selected {
+	background-color:	@secondary;
+	expand:			true;
+	border-radius:		15px;
+	border-color:		@text;
+	text-color:		@main;
+}
+
