@@ -35,11 +35,15 @@
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+
 (setq display-line-numbers-type 'relative)
 (setq inhibit-startup-message t)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (setq display-time-24hr-format t)
+(setq scroll-step 1)
+(setq scroll-margin 5)
+(setq scroll-conservatively 9999)
 
 (prettify-symbols-mode t)
 
@@ -88,12 +92,6 @@
 
 (pack 'diredfl 'laod-diredfl-mode)
 
-(defun load-dired-git-mode ()
-  (interactive)
-  (add-hook 'dired-after-readin-hook 'dired-git-info-auto-enable))
-
-(pack 'dired-git-info 'load-dired-git-mode)
-
 (pack 'fd-dired)
 (pack 'ranger)
 
@@ -101,7 +99,8 @@
 
 (defun load-lsp-mode ()
   (interactive)
-  (add-hook 'prog-mode-hook 'lsp))
+  ; (add-hook 'prog-mode-hook 'lsp)
+  )
 
 (defun load-lsp-ui-mode ()
   (interactive)
@@ -118,7 +117,8 @@
   (interactive)
   (setq rust-format-on-save t)
   (setq indent-tabs-mode nil)
-  (add-hook 'rust-mode-hook 'lsp))
+  ; (add-hook 'rust-mode-hook 'lsp)
+  )
 
 (pack 'rust-mode 'load-rust-mode)
 
@@ -128,7 +128,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ranger fd-dired projectile pfuture hydra ht gruvbox-theme evil diredfl dired-git-info cfrs all-the-icons-dired ace-window)))
+   '(rustic xterm-color rust-mode ranger projectile pfuture lsp-ui hydra gruvbox-theme flycheck fd-dired evil diredfl dired-git-info company cfrs all-the-icons-dired ace-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
