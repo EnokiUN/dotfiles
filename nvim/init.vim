@@ -122,6 +122,7 @@ if has("autocmd")
 		au FileType python set tabstop=4 softtabstop=4 shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
 		au FileType rust set smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 		au FileType godot set tabstop=4 softtabstop=4 shiftwidth=4 expandtab foldmethod=expr
+		au FileType crystal set wrap shiftwidth=2 softtabstop=2 expandtab
 	augroup END
 endif
 
@@ -136,6 +137,8 @@ let g:airline#extensions#coc#info_symbol = ' '
 let g:airline#extensions#coc#success_symbol = ' '
 let g:airline#extensions#coc#current_symbol = ' '
 let g:airline#extensions#coc#show_coc_status = 1
+
+let g:crystal_enable_completion = 0
 
 " PLUGINS
 call plug#begin()
@@ -156,5 +159,6 @@ call plug#begin()
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'tpope/vim-dispatch'
 	Plug 'habamax/vim-godot'
+	Plug 'vim-crystal/vim-crystal'
 call plug#end()
 

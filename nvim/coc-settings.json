@@ -5,6 +5,12 @@
 			"host": "127.0.0.1",
 			"filetypes": ["gdscript"],
 			"port": 6008
+		},
+		"crystal": {
+			"command": "crystalline",
+			"args": ["--stdio"],
+			"filetypes": ["crystal"]
 		}
-	}
+	},
+	"svelte.enable-ts-plugin": true
 }
