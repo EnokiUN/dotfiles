@@ -19,7 +19,7 @@ source /usr/share/nvm/init-nvm.sh
 [[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
 
 function proj () {
-  cd ~/projects/$1
+  cd ~/Projects/$1
 }
 
 export EDITOR='nvim'
@@ -29,11 +29,11 @@ export PATH="$HOME/.local/bin:$PATH"
 alias zr='source ~/.zshrc'
 alias vim='nvim'
 alias py='python3'
+alias yay='paru'
 alias :wq='exit'
 autoload -Uz tetriscurses
 alias tetris="tetriscurses"
 alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
-alias mpv='mpv --opengl-es=yes'
 alias '$'='' # Olivier, behold 0.001% of my power.
 
 if [ "$(command -v exa)" ]; then
