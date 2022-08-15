@@ -7,7 +7,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id polybar
-exec --no-startup-id picom --experimental-backends --backend glx --xrender-sync-fence -b
+exec --no-startup-id picomnc -b
 # No idea why I have to do this but it is what it is I suppose.
 exec --no-startup-id setxbmap gb
 # exec --no-startup-id emacs --daemon
@@ -115,16 +115,7 @@ bindsym $mod+d mode "resize"
 gaps inner 4
 gaps outer 0
 smart_gaps on
-smart_borders on
 
-# Colours
-set $main #0c0912
-set $secondary #e566ff 
-set $complimentary #fc35bc
-set $extra #120e1c
-set $text #ffffff
-
-client.focused $secondary $secondary $main
-client.unfocused $main $main $text
-client.focused_inactive $extra $extra $text
-client.urgent $complimentary $complimentary $secondary
+default_border none
+default_floating_border none
+hide_edge_borders none

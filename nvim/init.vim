@@ -161,3 +161,8 @@ call plug#begin()
   Plug 'vim-crystal/vim-crystal'
 call plug#end()
 
+" NEOVIDE
+
+if exists("neovide")
+	let g:neovide_transparency = 0.9
+endif
