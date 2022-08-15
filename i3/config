@@ -7,7 +7,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id polybar
-exec --no-startup-id picomnc -b
+exec --no-startup-id dunst & disown
+exec --no-startup-id picom -b
 # No idea why I have to do this but it is what it is I suppose.
 exec --no-startup-id setxbmap gb
 # exec --no-startup-id emacs --daemon
@@ -31,8 +32,8 @@ bindsym $alt+g exec "godot"
 bindsym $alt+e exec "emacsclient -c -a 'emacs'"
 bindsym $alt+s exec ~/projects/richard/dsend.sh
 
-bindsym Print exec "ksnip -r"
-bindsym $alt+Print exec ksnip
+bindsym Print exec "ksnip"
+bindsym $mod+Shift+s exec "ksnip -r"
 
 bindsym $mod+r exec "rofi -modi run,drun -show drun"
 bindsym $mod+Tab exec "rofi -modi window -show window"

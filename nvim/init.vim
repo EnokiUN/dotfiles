@@ -165,4 +165,8 @@ call plug#end()
 
 if exists("neovide")
 	let g:neovide_transparency = 0.9
+	let g:neovide_scroll_animation_lenght = 0.3
+	let g:neovide_cursor_animation_length= 0.05
+	let g:neovide_cursor_trail_length = 5
+	let g:neovide_cursor_vfx_mode = "ripple"
 endif

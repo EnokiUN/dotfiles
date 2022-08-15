@@ -22,12 +22,12 @@ function proj () {
   cd ~/Projects/$1
 }
 
-export EDITOR='nvim'
+export EDITOR='neovide'
 export PATH="$HOME/.local/bin:$PATH"
 
 ### ALIASES ###
 alias zr='source ~/.zshrc'
-alias vim='nvim'
+alias vim='neovide --multigrid'
 alias py='python3'
 alias yay='paru'
 alias :wq='exit'
