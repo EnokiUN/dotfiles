@@ -1,14 +1,17 @@
 set $mod Mod4
 set $alt Mod1
-font pango:CaskaydiaCove Nerd Font 10
+font pango:CaskaydiaCove Nerd Font 12
 
 exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore
+exec --no-startup-id polybar
+exec --no-startup-id picom --experimental-backends --backend glx --xrender-sync-fence -b
+# No idea why I have to do this but it is what it is I suppose.
+exec --no-startup-id setxbmap gb
 # exec --no-startup-id emacs --daemon
 
-set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -19,12 +22,12 @@ floating_modifier $mod
 # Applications
 bindsym $mod+w kill
 
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec alacritty
 
 bindsym $alt+q exec qutebrowser
 bindsym $alt+w exec revolt-desktop
 bindsym $alt+f exec firefox
-bindsym $alt+g exec "godot --video-driver GLES2"
+bindsym $alt+g exec "godot"
 bindsym $alt+e exec "emacsclient -c -a 'emacs'"
 bindsym $alt+s exec ~/projects/richard/dsend.sh
 
@@ -85,7 +88,6 @@ bindsym $mod+Escape workspace back_and_forth
 # Exit & Reload
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+q reload
-bindsym $mod+Shift+x exec "~/shutdown_confirmation.sh"
 
 mode "resize" {
         bindsym l resize shrink width 10 px or 10 ppt
@@ -126,21 +128,3 @@ client.focused $secondary $secondary $main
 client.unfocused $main $main $text
 client.focused_inactive $extra $extra $text
 client.urgent $complimentary $complimentary $secondary
-
-# Bar
-bar {
-    position top
-    strip_workspace_numbers yes
-    separator_symbol |
-    status_command i3status --config .config/i3/i3status.conf
-
-    colors {
-        background $main
-        statusline $text
-        separator $complimentary
-        focused_workspace $extra $secondary $main
-        active_workspace $secondary $extra $text
-        inactive_workspace $extra $main $text
-        urgent_workspace $compliment $complimentary $secondary
-    }
-}

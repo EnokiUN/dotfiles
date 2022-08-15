@@ -16,7 +16,7 @@ source /usr/share/nvm/init-nvm.sh
 
 # eval "$(starship init zsh)"
 
-[[ -r "/usr/share/z/z.sh" ]] && source /usr/share/z/z.sh
+eval "$(zoxide init zsh)"
 
 function proj () {
   cd ~/Projects/$1

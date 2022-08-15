@@ -1,6 +1,6 @@
 "  DISPLAY SETTINGS
 if &compatible
-	set nocompatible
+  set nocompatible
 endif
 set background=dark
 set nowrap
@@ -57,19 +57,20 @@ imap <F9> <nop>
 set pastetoggle=<F9>
 
 inoremap <silent><expr> <TAB>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<TAB>" :
-			\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+      \ coc#pum#visible() ? coc#pum#next(1):
+    \ CheckBackspace() ? "\<Tab>" :
+    \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-function s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1] =~# '\s'
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <silent><expr> <C-space> coc#refresh()
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 nmap <silent> gd <Plug>(coc-definition)
@@ -114,16 +115,16 @@ nnoremap <leader>fb <cmd>Telescope buffers<CR>
 
 " TAB & COMPLETITION SETTINGS
 if has("autocmd")
-	let zsh_is_sh=1
-	autocmd BufEnter * lcd %:p:h
-	augroup mysettings
-		au FileType xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,cs,julia,lisp set smartindent shiftwidth=2 softtabstop=2 expandtab
-		au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
-		au FileType python set tabstop=4 softtabstop=4 shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
-		au FileType rust set smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
-		au FileType godot set tabstop=4 softtabstop=4 shiftwidth=4 expandtab foldmethod=expr
-		au FileType crystal set wrap shiftwidth=2 softtabstop=2 expandtab
-	augroup END
+  let zsh_is_sh=1
+  autocmd BufEnter * lcd %:p:h
+  augroup mysettings
+    au FileType xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,cs,julia,lisp set smartindent shiftwidth=2 softtabstop=2 expandtab
+    au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
+    au FileType python set tabstop=4 softtabstop=4 shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
+    au FileType rust set smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+    au FileType godot set tabstop=4 softtabstop=4 shiftwidth=4 expandtab foldmethod=expr
+    au FileType crystal set wrap shiftwidth=2 softtabstop=2 expandtab
+  augroup END
 endif
 
 let g:airline_powerline_fonts = 1
@@ -142,23 +143,21 @@ let g:crystal_enable_completion = 0
 
 " PLUGINS
 call plug#begin()
-	Plug 'rust-lang/rust.vim'
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
-	Plug 'jmckiern/vim-shoot', {'do': '\"./install.py\" -U geckodriver' }
-	Plug 'github/copilot.vim'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-	Plug 'preservim/nerdtree'
-	Plug 'Xuyuanp/nerdtree-git-plugin'
-	Plug 'ryanoasis/vim-devicons'
-	Plug 'tpope/vim-fugitive'
-	Plug 'christoomey/vim-system-copy'
-	Plug 'tpope/vim-surround'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'nvim-lua/plenary.nvim'
-	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'tpope/vim-dispatch'
-	Plug 'habamax/vim-godot'
-	Plug 'vim-crystal/vim-crystal'
+  Plug 'rust-lang/rust.vim'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'jmckiern/vim-shoot', {'do': '\"./install.py\" -U geckodriver' }
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tpope/vim-fugitive'
+  Plug 'christoomey/vim-system-copy'
+  Plug 'tpope/vim-surround'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'tpope/vim-dispatch'
+  Plug 'habamax/vim-godot'
+  Plug 'vim-crystal/vim-crystal'
 call plug#end()
 
