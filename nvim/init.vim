@@ -56,6 +56,13 @@ imap <F10> <C-O>:set paste<CR>
 imap <F9> <nop>
 set pastetoggle=<F9>
 
+inoremap ( ()<ESC>i
+inoremap [ []<ESC>i
+inoremap { {}<ESC>i
+inoremap < <><ESC>i
+inoremap ' ''<ESC>i
+inoremap " ""<ESC>i
+
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1):
     \ CheckBackspace() ? "\<Tab>" :
