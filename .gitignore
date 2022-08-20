@@ -1,2 +1,3 @@
-# vim-plug
-nvim/autoload/plug.vim
+# Vim
+plug.vim
+gruvbox.vim
