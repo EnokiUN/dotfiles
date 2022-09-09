@@ -3,7 +3,11 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export ZSH="$HOME/.oh-my-zsh"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# eval "$(starship init zsh)"
 
 zstyle ':omz:update' mode reminder 
 
@@ -11,10 +15,8 @@ ENABLE_CORRECTION="true"
 plugins=(git sudo pip colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting docker)
 source $ZSH/oh-my-zsh.sh
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 source /usr/share/nvm/init-nvm.sh
 
-# eval "$(starship init zsh)"
 
 eval "$(zoxide init zsh)"
 
@@ -30,11 +32,13 @@ alias zr='source ~/.zshrc'
 alias vim='neovide --multigrid'
 alias py='python3'
 alias yay='paru'
+alias sysstart='sudo systemctl start'
 alias :wq='exit'
 autoload -Uz tetriscurses
 alias tetris="tetriscurses"
 alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
 alias '$'='' # Olivier, behold 0.001% of my power.
+alias '!'='t2eb'
 
 if [ "$(command -v exa)" ]; then
 	unalias -m ll
