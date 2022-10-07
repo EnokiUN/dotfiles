@@ -25,12 +25,10 @@ bindsym $mod+w kill
 
 bindsym $mod+Return exec alacritty
 
-bindsym $alt+q exec qutebrowser
-bindsym $alt+w exec revolt-desktop
 bindsym $alt+f exec firefox
 bindsym $alt+g exec "godot"
 bindsym $alt+e exec "emacsclient -c -a 'emacs'"
-bindsym $alt+s exec ~/projects/richard/dsend.sh
+bindsym $alt+r exec "PILFER_NAME=Enoki alacritty -e pilfer"
 
 bindsym Print exec "ksnip"
 bindsym $mod+Shift+s exec "ksnip -r"
@@ -100,10 +98,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+z reload
 
 mode "resize" {
-        bindsym l resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym h resize grow width 10 px or 10 ppt
+		bindsym l resize shrink width 10 px or 10 ppt
+		bindsym k resize grow height 10 px or 10 ppt
+		bindsym j resize shrink height 10 px or 10 ppt
+		bindsym h resize grow width 10 px or 10 ppt
 
 		bindsym $mod+h focus left
 		bindsym $mod+j focus down
@@ -115,8 +113,8 @@ mode "resize" {
 		bindsym $mod+Shift+k move up
 		bindsym $mod+Shift+l move right
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 bindsym $mod+d mode "resize"
@@ -126,6 +124,15 @@ gaps inner 4
 gaps outer 0
 smart_gaps on
 
-default_border none
-default_floating_border none
+default_border pixel 4
+default_floating_border pixel 4
 hide_edge_borders none
+new_window none
+
+for_window [class="^.*"] border pixel 0
+
+bindsym $mod+z move scratchpad
+
+bindsym $mod+x scratchpad show
+
+bindsym mod4 [title="^Sup ::"] scratchpad show
