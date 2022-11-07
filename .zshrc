@@ -12,7 +12,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode reminder 
 
 ENABLE_CORRECTION="true"
-plugins=(git sudo pip colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting docker)
+plugins=(git sudo pip colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting docker rust)
 source $ZSH/oh-my-zsh.sh
 
 source /usr/share/nvm/init-nvm.sh
