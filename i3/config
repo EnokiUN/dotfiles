@@ -25,7 +25,7 @@ bindsym $mod+w kill
 
 bindsym $mod+Return exec alacritty
 
-bindsym $alt+f exec firefox
+bindsym $alt+f exec firefox-developer-edition
 bindsym $alt+g exec "godot"
 bindsym $alt+e exec "emacsclient -c -a 'emacs'"
 bindsym $alt+r exec "PILFER_NAME=Enoki alacritty -e pilfer"

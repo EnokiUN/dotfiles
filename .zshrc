@@ -39,6 +39,7 @@ alias tetris="tetriscurses"
 alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
 alias '$'='' # Olivier, behold 0.001% of my power.
 alias '!'='t2eb'
+alias 'ff'='firefox-developer-edition'
 
 if [ "$(command -v exa)" ]; then
 	unalias -m ll
