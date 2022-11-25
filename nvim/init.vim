@@ -169,6 +169,7 @@ call plug#begin()
   Plug 'editorconfig/editorconfig-vim'
   Plug 'evanleck/vim-svelte'
   Plug 'Raimondi/delimitMate'
+  Plug 'andweeb/presence.nvim'
 call plug#end()
 
 " NEOVIDE
@@ -178,3 +179,7 @@ if exists("neovide")
 	let g:neovide_cursor_trail_size = 10
 	let g:neovide_cursor_vfx_mode = "ripple"
 endif
+
+" presence.nvim
+let g:presence_neovim_image_text = "Working on stuff"
+let g:presence_enable_line_number = 1
