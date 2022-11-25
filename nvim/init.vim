@@ -56,12 +56,12 @@ imap <F10> <C-O>:set paste<CR>
 imap <F9> <nop>
 set pastetoggle=<F9>
 
-inoremap ( ()<ESC>i
-inoremap [ []<ESC>i
-inoremap { {}<ESC>i
-inoremap < <><ESC>i
-inoremap ' ''<ESC>i
-inoremap " ""<ESC>i
+" inoremap ( ()<LEFT>
+" noremap [ []<LEFT>
+" inoremap { {}<LEFT>
+" inoremap < <><LEFT>
+" inoremap ' ''<LEFT>
+" inoremap \" \"\"<LEFT>
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1):
@@ -168,6 +168,7 @@ call plug#begin()
   Plug 'vim-crystal/vim-crystal'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'evanleck/vim-svelte'
+  Plug 'Raimondi/delimitMate'
 call plug#end()
 
 " NEOVIDE
