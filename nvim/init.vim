@@ -125,12 +125,13 @@ if has("autocmd")
   let zsh_is_sh=1
   autocmd BufEnter * lcd %:p:h
   augroup mysettings
-    au FileType xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,cs,julia,lisp set smartindent shiftwidth=2 softtabstop=2 expandtab
+    au FileType xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,cs,julia,lisp,asm set smartindent shiftwidth=2 softtabstop=2 expandtab
     au FileType tex set wrap shiftwidth=2 softtabstop=2 expandtab
     au FileType python set tabstop=4 softtabstop=4 shiftwidth=4 cinwords=if,elif,else,for,while,try,except,finally,def,class
     au FileType rust set smartindent tabstop=4 softtabstop=4 shiftwidth=4 expandtab
     au FileType godot set tabstop=4 softtabstop=4 shiftwidth=4 expandtab foldmethod=expr
     au FileType crystal set wrap shiftwidth=2 softtabstop=2 expandtab
+    au FileType make set shiftwidth=2 tabstop=2 smartindent noexpandtab
   augroup END
 endif
 
@@ -169,7 +170,6 @@ call plug#begin()
   Plug 'editorconfig/editorconfig-vim'
   Plug 'evanleck/vim-svelte'
   Plug 'Raimondi/delimitMate'
-  Plug 'andweeb/presence.nvim'
 call plug#end()
 
 " NEOVIDE
@@ -179,7 +179,3 @@ if exists("neovide")
 	let g:neovide_cursor_trail_size = 10
 	let g:neovide_cursor_vfx_mode = "ripple"
 endif
-
-" presence.nvim
-let g:presence_neovim_image_text = "Working on stuff"
-let g:presence_enable_line_number = 1
