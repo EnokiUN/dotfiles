@@ -1,0 +1,55 @@
+(defwidget bar []
+  (box :orientation "h"
+    (workspaces)
+    (sidestuff)))
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end"
+    (metric :label "🔊"
+			:value 100
+            :onchange "amixer -D pulse sset Master {}%")
+    (metric :label ""
+            :value {EWW_RAM.used_mem_perc}
+            :onchange "")
+    time))
+
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10
+    (button :onclick "hyprctl dispatch workspace 1" 0)
+    (button :onclick "hyprctl dispatch workspace 2" 1)
+    (button :onclick "hyprctl dispatch workspace 3" 2)
+    (button :onclick "hyprctl dispatch workspace 4" 3)
+    (button :onclick "hyprctl dispatch workspace 5" 4)
+    (button :onclick "hyprctl dispatch workspace 6" 5)
+    (button :onclick "hyprctl dispatch workspace 7" 6)
+    (button :onclick "hyprctl dispatch workspace 8" 7)
+    (button :onclick "hyprctl dispatch workspace 9" 8)
+    (button :onclick "hyprctl dispatch workspace 10" 9)))
+
+(defwidget metric [label value onchange]
+  (box :orientation "h"
+       :class "metric"
+       :space-evenly false
+    (box :class "label" label)
+    (scale :min 0
+           :max 101
+           :active {onchange != ""}
+           :value value
+           :onchange onchange)))
+
+(defpoll time :interval "1s"
+  "date '+%H:%M'")
+
+(defwindow bar
+  :monitor 0
+  :exclusive true
+  :geometry (geometry :x "0%"
+                      :y "0%"
+                      :width "100%"
+                      :height "30px"
+                      :anchor "top center")
+  (bar))
