@@ -11,7 +11,7 @@ exec --no-startup-id dunst & disown
 exec --no-startup-id picom -b
 # No idea why I have to do this but it is what it is I suppose.
 exec --no-startup-id setxbmap gb
-# exec --no-startup-id emacs --daemon
+exec --no-startup-id emacs --daemon
 
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
@@ -96,8 +96,9 @@ bindsym $mod+Shift+6 move container to workspace $ws6
 bindsym $mod+Escape workspace back_and_forth
 
 # Exit & Reload
-bindsym $mod+Shift+r restart
-bindsym $mod+Shift+z reload
+bindsym $mod+Shift+r reload
+bindsym $mod+Shift+z restart
+bindsym $mod+Shift+c exit
 
 mode "resize" {
 		bindsym l resize shrink width 10 px or 10 ppt
