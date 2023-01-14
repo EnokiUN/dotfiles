@@ -1,0 +1,25 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["rust", "python", "gdscript"],
+  "python": {
+    "formatting": {
+      "provider": "black"
+    }
+  },
+  "languageserver": {
+    "godot": {
+      "host": "127.0.0.1",
+      "filetypes": ["gdscript"],
+      "port": 6008
+    },
+    "crystal": {
+      "command": "crystalline",
+      "args": ["--stdio"],
+      "filetypes": ["crystal"]
+    }
+  },
+  "rust-analyzer": {
+    "cargo": {
+	  "allFeatures": true
+	}
+  }
+}
