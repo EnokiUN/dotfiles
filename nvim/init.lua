@@ -200,7 +200,7 @@ local on_attach = function(client, bufnr)
   end
   })
 
-  vim.api.nvim_create_autocmd('BufWritePost', {
+  vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = bufnr,
       callback = function()
         vim.lsp.buf.format { async = true }
@@ -252,7 +252,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'rust_analyzer', 'pyright', 'svelte' }
+local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -377,11 +377,12 @@ end
 
 vim.lsp.handlers['textDocument/definition'] = goto_definition('split')
 
+inlayhints.setup()
 vim.api.nvim_create_augroup("LspAttach_inlayhints", {})
 vim.api.nvim_create_autocmd("LspAttach", {
   group = "LspAttach_inlayhints",
   callback = function(args)
-    if not (args.data and args.data.client_id) then
+    if not (args.data and args.data.client_id) or vim.bo.filetype == "rust" then -- rust tools inlay hints reign supreme
       return
     end
 
