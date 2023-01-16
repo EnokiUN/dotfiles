@@ -22,6 +22,7 @@ set.number = true
 set.relativenumber = true
 set.syntax = 'on'
 set.list = true
+set.listchars = 'tab:| ,trail:-,nbsp:+'
 
 vim.cmd('colorscheme gruvbox')
 
@@ -57,7 +58,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 local indents = vim.api.nvim_create_augroup('FileIndents', {clear = true})
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'xslt,xml,css,html,xhtml,javascript,sh,config,c,cpp,cs,julia,lisp,asm,lua,crystal,svelte',
+  pattern = 'xslt,xml,css,html,xhtml,javascript,typescript,sh,config,c,cpp,cs,julia,lisp,asm,lua,crystal,svelte',
   desc = 'Adjust tab settings for specific file types',
   group = indents,
   command = 'set smartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab'
@@ -133,8 +134,10 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 vim.call('plug#end')
 
 -- KEY BINDINGS
-vim.g.mapleader = ","
+vim.g.mapleader = ' '
 local opts = { noremap=true, silent=true }
+
+vim.keymap.set('n', '<Space>', '<NOP>', opts)
 
 vim.keymap.set('n', '<C-n>', ':NERDTree<CR>', opts)
 vim.keymap.set('n', '<C-t>', ':NERDTreeToggle<CR>', opts)
@@ -179,10 +182,10 @@ local trouble = require('trouble')
 local rust_tools = require('rust-tools')
 local inlayhints = require('lsp-inlayhints')
 
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, opts)
 
 local on_attach = function(client, bufnr)
   vim.api.nvim_create_autocmd('CursorHold', {
@@ -203,7 +206,7 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_create_autocmd('BufWritePre', {
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.format { async = true }
+        vim.lsp.buf.format { async = false }
       end
   })
 
