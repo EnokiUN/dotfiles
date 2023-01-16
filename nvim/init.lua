@@ -203,12 +203,14 @@ local on_attach = function(client, bufnr)
   end
   })
 
-  vim.api.nvim_create_autocmd('BufWritePre', {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.buf.format { async = false }
-      end
-  })
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format { async = false }
+        end
+    })
+  end
 
   if client.server_capabilities.documentHighlightProvider then
     vim.cmd [[
@@ -255,7 +257,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls' }
+local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
