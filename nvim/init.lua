@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 local indents = vim.api.nvim_create_augroup('FileIndents', {clear = true})
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'xslt,xml,css,html,xhtml,javascript,typescript,sh,config,c,cpp,cs,julia,lisp,asm,lua,crystal,svelte',
+  pattern = 'xslt,xml,css,html,xhtml,javascript,typescript,javascriptreact,typescriptreact,sh,config,c,cpp,cs,julia,lisp,asm,lua,crystal,svelte,json',
   desc = 'Adjust tab settings for specific file types',
   group = indents,
   command = 'set smartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab'
@@ -100,7 +100,7 @@ local Plug = vim.fn['plug#']
 
 vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug 'rust-lang/rust.vim'
-  Plug('jmckiern/vim-shoot', {['do'] = '\"./install.py\" -U geckodriver' })
+  Plug('jmckiern/vim-shoot', {['do'] = '\"./install.py\" geckodriver' })
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'preservim/nerdtree'
@@ -203,7 +203,7 @@ local on_attach = function(client, bufnr)
   end
   })
 
-  if client.server_capabilities.documentFormattingProvider then
+  if client.server_capabilities.documentFormattingProvider and client.name ~= 'crystalline' then
     vim.api.nvim_create_autocmd('BufWritePre', {
         buffer = bufnr,
         callback = function()
@@ -257,7 +257,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls' }
+local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls', 'crystalline' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -416,25 +416,7 @@ cmp.setup.cmdline(':', {
 
 cmp.event:on(
   'confirm_done',
-  autopairs.on_confirm_done({
-    filetypes = {
-      ['*'] = {
-        ['('] = {
-          kind = {
-            cmp.lsp.CompletionItemKind.Function,
-            cmp.lsp.CompletionItemKind.Method,
-          },
-          handler = handlers['*']
-        },
-        ['{'] = {
-          kind = {
-            cmp.lsp.CompletionItemKind.Struct,
-          },
-          handler = handlers['*']
-        }
-      },
-    }
-  })
+  autopairs.on_confirm_done()
 )
 
 local signs = { Error = ' ', Warn = ' ', Hint = ' ', Info = ' ' }
