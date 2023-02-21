@@ -1,4 +1,5 @@
 # Vim
 plug.vim
+plug.vim.old
 gruvbox.vim
 plugged
