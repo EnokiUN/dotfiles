@@ -24,7 +24,7 @@ function proj () {
   cd ~/Projects/$1
 }
 
-export EDITOR='neovide'
+export EDITOR='neovide --nofork'
 export PATH="$HOME/.local/bin:$PATH"
 
 ### ALIASES ###
@@ -39,7 +39,8 @@ alias tetris="tetriscurses"
 alias notes='cd ~/Notes && git pull && nvim . && git add . && git commit -m "notes" && git push && cd -'
 alias '$'='' # Olivier, behold 0.001% of my power.
 alias '!'='t2eb'
-alias 'ff'='firefox-developer-edition'
+alias ff='firefox-developer-edition'
+alias dupe='alacritty --working-directory . & disown'
 
 if [ "$(command -v exa)" ]; then
 	unalias -m ll
