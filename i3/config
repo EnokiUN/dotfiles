@@ -29,6 +29,7 @@ bindsym $alt+f exec firefox-developer-edition
 bindsym $alt+g exec godot
 bindsym $alt+d exec discord-ptb
 bindsym $alt+m exec miru
+bindsym $alt+h exec heroic
 bindsym $alt+e exec "emacsclient -c -a 'emacs'"
 bindsym $alt+r exec "PILFER_NAME=Enoki alacritty -e pilfer"
 
