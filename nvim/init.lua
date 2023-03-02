@@ -257,7 +257,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls', 'crystalline' }
+local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls', 'crystalline', 'gdscript' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -435,16 +435,16 @@ vim.keymap.set('n', '<leader>xx', '<cmd>TroubleToggle<cr>',
 vim.keymap.set('n', '<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>',
   {silent = true, noremap = true}
 )
-vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
+vim.keymap.set('n', '<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>',
   {silent = true, noremap = true}
 )
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
+vim.keymap.set('n', '<leader>xl', '<cmd>TroubleToggle loclist<cr>',
   {silent = true, noremap = true}
 )
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+vim.keymap.set('n', '<leader>xq', '<cmd>TroubleToggle quickfix<cr>',
   {silent = true, noremap = true}
 )
-vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
+vim.keymap.set('n', 'gR', '<cmd>TroubleToggle lsp_references<cr>',
   {silent = true, noremap = true}
 )
 
