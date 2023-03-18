@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd('BufEnter', {
 local indents = vim.api.nvim_create_augroup('FileIndents', {clear = true})
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'xslt,xml,css,html,xhtml,javascript,typescript,javascriptreact,typescriptreact,sh,config,c,cpp,cs,julia,lisp,asm,lua,crystal,svelte,json',
+  pattern = 'xslt,xml,css,html,xhtml,javascript,typescript,javascriptreact,typescriptreact,sh,config,c,cpp,cs,julia,lisp,asm,lua,crystal,svelte,json,astro',
   desc = 'Adjust tab settings for specific file types',
   group = indents,
   command = 'set smartindent tabstop=2 shiftwidth=2 softtabstop=2 expandtab'
@@ -131,6 +131,7 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'simrat39/rust-tools.nvim'
   Plug 'lvimuser/lsp-inlayhints.nvim'
+  Plug 'wuelnerdotexe/vim-astro'
 vim.call('plug#end')
 
 -- KEY BINDINGS
@@ -161,13 +162,15 @@ if telescope then
 end
 
 vim.g.airline_powerline_fonts = 1
-vim.g.airline_solarized_bg='dark'
+vim.g.airline_theme='base16_gruvbox_dark_hard'
 vim.g['airline#extensions#nvimlsp#enabled'] = 1
 vim.g['airline#extensions#nvimlsp#show_line_numbers'] = 1
 vim.g['airline#extensions#nvimlsp#error_symbol'] = ''
 vim.g['airline#extensions#nvimlsp#warning_symbol'] = ''
 vim.g['airline#extensions#nvimlsp#open_lnum_symbol'] = ' '
 vim.g['airline#extensions#nvimlsp#close_lnum_symbol'] = ''
+
+vim.g.astro_typescript = 'enable'
 
 -- LSP
 
@@ -257,7 +260,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls', 'crystalline', 'gdscript' }
+local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls', 'crystalline', 'gdscript', 'astro' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -293,6 +296,16 @@ lspconfig.tsserver.setup {
       }
     }
   }
+}
+
+-- I don't even like C#
+lspconfig.omnisharp.setup {
+  cmd = { 'omnisharp' },
+  enable_roslyn_analyzers = false,
+  organize_imports_on_format = false,
+  enable_import_completion = false,
+  on_attach = on_attach,
+  capabilities = capabilities,
 }
 
 cmp.setup {
