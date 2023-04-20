@@ -260,7 +260,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<leader>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls', 'crystalline', 'gdscript', 'astro' }
+local servers = { 'rust_analyzer', 'pyright', 'svelte', 'emmet_ls', 'cssls', 'crystalline', 'gdscript', 'astro', 'ruff_lsp' }
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
@@ -470,6 +470,7 @@ rust_tools.setup({
 -- NEOVIDE
 
 if vim.g.neovide then
+  -- vim.o.guifont = "FiraCode Nerd Font Mono:h16"
   vim.g.neovide_transparency = 0.9
   vim.g.neovide_cursor_trail_size = 10
   vim.g.neovide_cursor_vfx_mode = "ripple"

@@ -39,7 +39,8 @@
            :max 101
            :active {onchange != ""}
            :value value
-           :onchange onchange)))
+           :onchange onchange)
+	))
 
 (defpoll time :interval "1s"
   "date '+%H:%M'")

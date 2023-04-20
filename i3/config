@@ -8,7 +8,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id polybar
 exec --no-startup-id dunst & disown
-exec --no-startup-id picom -b
+exec --no-startup-id picom --experimental-backends -b
 # No idea why I have to do this but it is what it is I suppose.
 exec --no-startup-id setxbmap gb
 exec --no-startup-id emacs --daemon
@@ -23,7 +23,7 @@ floating_modifier $mod
 # Applications
 bindsym $mod+w kill
 
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec kitty
 
 bindsym $alt+f exec firefox-developer-edition
 bindsym $alt+g exec godot

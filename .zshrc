@@ -9,10 +9,10 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # eval "$(starship init zsh)"
 
-zstyle ':omz:update' mode reminder 
+zstyle ':omz:update' mode reminder
 
 ENABLE_CORRECTION="true"
-plugins=(git sudo pip colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting docker rust)
+plugins=(git sudo pip colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting docker docker-compose rust kubectl)
 source $ZSH/oh-my-zsh.sh
 
 source /usr/share/nvm/init-nvm.sh
@@ -66,3 +66,27 @@ set -o vi
 
 echo
 neofetch
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/etc/profile.d/conda.sh" ]; then
+        . "/usr/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+# pnpm
+export PNPM_HOME="/home/enoki/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

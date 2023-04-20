@@ -71,17 +71,17 @@
     mouse_right_click = close_all
 
 [urgency_low]
-    background = "#22222255"
+    background = "#222222aa"
     foreground = "#888888"
     timeout = 10
 
 [urgency_normal]
-    background = "#01042355"
+    background = "#010423aa"
     foreground = "#eeeeff"
     timeout = 10
 
 [urgency_critical]
-    background = "#90000055"
+    background = "#900000aa"
     foreground = "#ffffff"
     frame_color = "#ff0000"
     timeout = 0
