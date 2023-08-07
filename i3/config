@@ -102,26 +102,34 @@ bindsym $mod+Shift+z restart
 bindsym $mod+Shift+c exit
 
 mode "resize" {
-		bindsym l resize shrink width 10 px or 10 ppt
-		bindsym k resize grow height 10 px or 10 ppt
-		bindsym j resize shrink height 10 px or 10 ppt
-		bindsym h resize grow width 10 px or 10 ppt
+	bindsym l resize shrink width 10 px or 10 ppt
+	bindsym k resize grow height 10 px or 10 ppt
+	bindsym j resize shrink height 10 px or 10 ppt
+	bindsym h resize grow width 10 px or 10 ppt
 
-		bindsym $mod+h focus left
-		bindsym $mod+j focus down
-		bindsym $mod+k focus up
-		bindsym $mod+l focus right
+	bindsym $mod+h focus left
+	bindsym $mod+j focus down
+	bindsym $mod+k focus up
+	bindsym $mod+l focus right
 
-		bindsym $mod+Shift+h move left
-		bindsym $mod+Shift+j move down
-		bindsym $mod+Shift+k move up
-		bindsym $mod+Shift+l move right
+	bindsym $mod+Shift+h move left
+	bindsym $mod+Shift+j move down
+	bindsym $mod+Shift+k move up
+	bindsym $mod+Shift+l move right
 
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
 }
 
 bindsym $mod+d mode "resize"
+
+# Arknights (why)
+mode "arknights" {
+	bindsym x [class="Weston Compositor"] exec xdotool mousemove 1800 100 click 1 sleep 0.1 mousemove restore
+	bindsym shift+Escape mode "default"
+}
+
+bindsym $mod+shift+a mode "arknights"
 
 # Gaps :trol:
 gaps inner 4
