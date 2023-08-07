@@ -12,7 +12,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 zstyle ':omz:update' mode reminder
 
 ENABLE_CORRECTION="true"
-plugins=(git sudo pip colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting docker docker-compose rust kubectl)
+plugins=(git sudo pip colored-man-pages command-not-found zsh-autosuggestions zsh-syntax-highlighting docker docker-compose rust kubectl minikube)
 source $ZSH/oh-my-zsh.sh
 
 source /usr/share/nvm/init-nvm.sh
@@ -31,7 +31,6 @@ export PATH="$HOME/.local/bin:$PATH"
 alias zr='source ~/.zshrc'
 alias vim='neovide --multigrid'
 alias py='python3'
-alias yay='paru'
 alias sysstart='sudo systemctl start'
 alias :wq='exit'
 autoload -Uz tetriscurses
@@ -43,23 +42,23 @@ alias ff='firefox-developer-edition'
 alias dupe='alacritty --working-directory . & disown'
 
 if [ "$(command -v exa)" ]; then
-	unalias -m ll
-	alias ll='exa -1FTrls name --color always --git --icons --level=1'
-	alias ll2='exa -1FTrls name --color always --git --icons --level=2'
-	alias ll3='exa -1FTrls name --color always --git --icons --level=3'
-	alias ll4='exa -1FTrls name --color always --git --icons --level=4'
-	unalias -m la
-	alias la='exa -1FTrlas name --color always --git --icons --level=1'
-	alias la2='exa -1FTrlas name --color always --git --icons --level=2'
-	alias la3='exa -1FTrlas name --color always --git --icons --level=3'
-	alias la4='exa -1FTrlas name --color always --git --icons --level=4'
-	unalias -m ls
-	alias ls='exa -GFrs name --color always --git --icons'
+  unalias -m ll
+  alias ll='exa -1FTrls name --color always --git --icons --level=1'
+  alias ll2='exa -1FTrls name --color always --git --icons --level=2'
+  alias ll3='exa -1FTrls name --color always --git --icons --level=3'
+  alias ll4='exa -1FTrls name --color always --git --icons --level=4'
+  unalias -m la
+  alias la='exa -1FTrlas name --color always --git --icons --level=1'
+  alias la2='exa -1FTrlas name --color always --git --icons --level=2'
+  alias la3='exa -1FTrlas name --color always --git --icons --level=3'
+  alias la4='exa -1FTrlas name --color always --git --icons --level=4'
+  unalias -m ls
+  alias ls='exa -GFrs name --color always --git --icons'
 fi
 
 if [ "$(command -v bat)" ]; then
-	unalias -m cat
-	alias cat='bat --color=always'
+  unalias -m cat
+  alias cat='bat --color=always'
 fi
 
 set -o vi
